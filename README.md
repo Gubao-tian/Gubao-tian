@@ -54,6 +54,12 @@ my build log: everything here is generated from the repositories I push.
 
 <sub>Recomputed every day by a GitHub Action — the numbers above are never stale.</sub>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Gubao-tian/Gubao-tian/output/snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Gubao-tian/Gubao-tian/output/snake-light.svg">
+  <img src="https://raw.githubusercontent.com/Gubao-tian/Gubao-tian/output/snake-dark.svg" alt="A snake eating the squares of my contribution graph" width="100%">
+</picture>
+
 ### Let's connect
 
 - 📫 **936918302@qq.com** — the fastest way to reach me
