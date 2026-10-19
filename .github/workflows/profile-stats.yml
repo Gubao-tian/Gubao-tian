@@ -1,0 +1,45 @@
+name: Profile stats
+
+# Re-renders assets/stats-{dark,light}.svg from the GitHub GraphQL API.
+# No third-party image services are involved: the SVG is committed to this repo
+# and served by GitHub itself.
+
+on:
+  schedule:
+    - cron: "23 2 * * *" # daily, 02:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-stats
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Render SVG cards
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_LOGIN: ${{ github.repository_owner }}
+        run: node tools/generate-stats.mjs
+
+      - name: Commit when the numbers changed
+        run: |
+          if [ -z "$(git status --porcelain assets/)" ]; then
+            echo "stats unchanged, nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/stats-dark.svg assets/stats-light.svg
+          git commit -m "chore(stats): refresh profile cards"
+          git push
