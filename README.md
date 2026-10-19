@@ -54,11 +54,18 @@ my build log: everything here is generated from the repositories I push.
 
 <sub>Recomputed every day by a GitHub Action — the numbers above are never stale.</sub>
 
+<!--
+  Contribution snake: .github/workflows/snake.yml already publishes
+  snake-{dark,light}.svg to the `output` branch every day. Uncomment this block
+  once the graph has enough squares for the animation to read well — at a
+  handful of contributions the grid just looks empty.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Gubao-tian/Gubao-tian/output/snake-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Gubao-tian/Gubao-tian/output/snake-light.svg">
   <img src="https://raw.githubusercontent.com/Gubao-tian/Gubao-tian/output/snake-dark.svg" alt="A snake eating the squares of my contribution graph" width="100%">
 </picture>
+-->
 
 ### Let's connect
 
