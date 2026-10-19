@@ -70,8 +70,8 @@ function hero(t) {
   const termLines = terminal
     .map(
       ([cmd, out], i) => `
-      <text x="0" y="${22 + i * 42}" class="mono" font-size="13" fill="${t.faint}">${esc(cmd)}</text>
-      <text x="0" y="${38 + i * 42}" class="mono" font-size="15" fill="${t.value}">${esc(out)}</text>`,
+      <text x="0" y="${24 + i * 46}" class="mono" font-size="15" fill="${t.faint}">${esc(cmd)}</text>
+      <text x="0" y="${42 + i * 46}" class="mono" font-size="18" fill="${t.value}">${esc(out)}</text>`,
     )
     .join("");
 
@@ -127,37 +127,37 @@ function hero(t) {
     <rect x="0" y="0" width="1200" height="3" fill="url(#hrule)"/>
 
     <g class="fade-in d1">
-      <text x="80" y="86" class="mono" font-size="12.5" letter-spacing="4.2" fill="${t.muted}">${esc(
+      <text x="80" y="86" class="mono" font-size="13.5" letter-spacing="4.8" fill="${t.muted}">${esc(
         IDENTITY.eyebrow,
       )}</text>
     </g>
 
     <g class="fade-in d2">
-      <text x="78" y="158" class="sans" font-size="58" font-weight="800" letter-spacing="-1.2" fill="url(#haccent)">${esc(
+      <text x="78" y="160" class="sans" font-size="64" font-weight="800" letter-spacing="-1.4" fill="url(#haccent)">${esc(
         IDENTITY.handle,
       )}</text>
     </g>
 
     <g class="fade-in d3">
-      <text x="80" y="200" class="sans" font-size="19" fill="${t.muted}">${esc(IDENTITY.tagline)}</text>
+      <text x="80" y="202" class="sans" font-size="21" fill="${t.muted}">${esc(IDENTITY.tagline)}</text>
     </g>
 
     <g class="fade-in d3">
-      <rect x="80" y="228" width="26" height="2" fill="${t.accentA}"/>
-      <text x="80" y="262" class="mono" font-size="12.5" letter-spacing="1.6" fill="${t.faint}">${esc(
+      <rect x="80" y="228" width="30" height="2" fill="${t.accentA}"/>
+      <text x="80" y="262" class="mono" font-size="13" letter-spacing="1.6" fill="${t.faint}">${esc(
         IDENTITY.site,
       )}</text>
     </g>
 
-    <g transform="translate(760 62)">
-      <rect width="360" height="182" rx="12" fill="${t.panel}" stroke="${t.panelStroke}" stroke-width="1"/>
-      <rect x="1" y="1" width="358" height="28" rx="11" fill="none" stroke="${t.panelStroke}" stroke-width="1" opacity=".7"/>
-      <circle cx="20" cy="15" r="4" fill="#f87171" opacity=".85"/>
-      <circle cx="36" cy="15" r="4" fill="#fbbf24" opacity=".85"/>
-      <circle cx="52" cy="15" r="4" fill="#34d399" opacity=".85"/>
-      <text x="76" y="19" class="mono" font-size="11" fill="${t.faint}">~/gubao-tian</text>
-      <g transform="translate(22 46)">${termLines}
-        <rect class="cursor" x="176" y="110" width="8" height="15" fill="${t.accentA}"/>
+    <g transform="translate(710 45)">
+      <rect width="410" height="210" rx="12" fill="${t.panel}" stroke="${t.panelStroke}" stroke-width="1"/>
+      <rect x="1" y="1" width="408" height="30" rx="11" fill="none" stroke="${t.panelStroke}" stroke-width="1" opacity=".7"/>
+      <circle cx="21" cy="16" r="4.5" fill="#f87171" opacity=".85"/>
+      <circle cx="38" cy="16" r="4.5" fill="#fbbf24" opacity=".85"/>
+      <circle cx="55" cy="16" r="4.5" fill="#34d399" opacity=".85"/>
+      <text x="80" y="21" class="mono" font-size="12" fill="${t.faint}">~/gubao-tian</text>
+      <g transform="translate(24 56)">${termLines}
+        <rect class="cursor" x="200" y="120" width="9" height="18" fill="${t.accentA}"/>
       </g>
     </g>
   </g>

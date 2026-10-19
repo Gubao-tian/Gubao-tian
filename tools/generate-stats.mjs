@@ -58,6 +58,7 @@ query ($login: String!) {
       orderBy: { field: PUSHED_AT, direction: DESC }
     ) {
       nodes {
+        name
         stargazerCount
         languages(first: 6, orderBy: { field: SIZE, direction: DESC }) {
           edges { size node { name color } }
@@ -101,8 +102,12 @@ function summarise(user) {
 
   const stars = user.repoList.nodes.reduce((n, r) => n + r.stargazerCount, 0);
 
+  // The profile-README repo is tooling, not a project: keep its .mjs helpers
+  // out of the language mix so the bar reflects real work.
+  const projectRepos = user.repoList.nodes.filter((r) => r.name.toLowerCase() !== LOGIN.toLowerCase());
+
   const langs = new Map();
-  for (const repo of user.repoList.nodes) {
+  for (const repo of projectRepos) {
     for (const { size, node } of repo.languages.edges) {
       const prev = langs.get(node.name) || { size: 0, color: node.color || "#8b9ab3" };
       langs.set(node.name, { size: prev.size + size, color: prev.color });
@@ -145,10 +150,10 @@ function render(s, t) {
         ? ""
         : `<rect x="${x - 18}" y="56" width="1" height="64" fill="${t.text}" opacity=".10"/>`;
     return `${divider}
-    <text x="${x}" y="106" font-size="38" font-weight="700" fill="${t.text}" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif">${pick(
+    <text x="${x}" y="110" font-size="44" font-weight="700" fill="${t.text}" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif">${pick(
       s,
     )}</text>
-    <text x="${x}" y="132" font-size="10.5" letter-spacing="1.9" fill="${t.faint}" font-family="ui-monospace, Menlo, Consolas, monospace">${label}</text>`;
+    <text x="${x}" y="136" font-size="11.5" letter-spacing="2.1" fill="${t.faint}" font-family="ui-monospace, Menlo, Consolas, monospace">${label}</text>`;
   }).join("");
 
   let bar = "";
