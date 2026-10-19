@@ -3,3 +3,7 @@
 *.mjs text eol=lf
 *.yml text eol=lf
 *.md text eol=lf
+
+# The README renderer is tooling, not a JavaScript project — keep it out of the
+# repository language bar so the profile repo doesn't claim a language it isn't.
+tools/*.mjs linguist-detectable=false
