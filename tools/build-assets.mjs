@@ -15,8 +15,8 @@ const BADGES = join(ASSETS, "badges");
 
 const IDENTITY = {
   handle: "Gubao-tian",
-  eyebrow: "STUDENT · DEVELOPER",
-  tagline: "Building with Python and large language models.",
+  eyebrow: "STUDENT · DEVELOPER · BUILDER",
+  tagline: "Zero-dependency web tools, LLM apps & computer vision.",
   site: "github.com/Gubao-tian",
 };
 
@@ -63,7 +63,7 @@ const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, 
 function hero(t) {
   const terminal = [
     ["$ whoami", "student / developer"],
-    ["$ stack", "python · llm apps"],
+    ["$ build", "zero-dep web · llm · cv"],
     ["$ status", "learning in public"],
   ];
 
@@ -165,8 +165,11 @@ function hero(t) {
 `;
 }
 
-/** A single flat badge: dark pill that reads fine on both README themes. */
-function badge({ label, accent, width }) {
+/** A single flat badge: dark pill that reads fine on both README themes.
+ *  Width is derived from the label so adding a technology never needs a magic number. */
+function badge({ label, accent }) {
+  // ui-monospace at 13.5px averages ~8.1px per ASCII glyph.
+  const width = Math.ceil(34 + label.length * 8.1 + 22);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="44" viewBox="0 0 ${width} 44" role="img" aria-label="${esc(
     label,
   )}">
@@ -185,10 +188,22 @@ function badge({ label, accent, width }) {
 `;
 }
 
+// Labels stay ASCII so the monospace width estimate above stays accurate.
+// These are the technologies actually present in the public repositories.
 const BADGE_DEFS = [
-  { file: "python.svg", label: "Python", accent: "#4b8bbe", width: 132 },
-  { file: "ai-llm.svg", label: "AI · LLM", accent: "#22d3ee", width: 138 },
-  { file: "git.svg", label: "Git", accent: "#f05033", width: 108 },
+  { file: "javascript.svg", label: "JavaScript", accent: "#f7df1e" },
+  { file: "html-css.svg", label: "HTML / CSS", accent: "#e34c26" },
+  { file: "python.svg", label: "Python", accent: "#4b8bbe" },
+  { file: "nodejs.svg", label: "Node.js", accent: "#5fa04e" },
+  { file: "react-vite.svg", label: "React · Vite", accent: "#61dafb" },
+  { file: "threejs.svg", label: "three.js", accent: "#c4b5fd" },
+  { file: "pwa.svg", label: "PWA", accent: "#a78bfa" },
+  { file: "canvas.svg", label: "Canvas", accent: "#fb923c" },
+  { file: "ai-llm.svg", label: "LLM Apps", accent: "#22d3ee" },
+  { file: "yolov8.svg", label: "YOLOv8", accent: "#a3e635" },
+  { file: "machine-vision.svg", label: "Machine Vision", accent: "#38bdf8" },
+  { file: "git.svg", label: "Git · Actions", accent: "#f05033" },
+  { file: "testing.svg", label: "Tests · Docs", accent: "#34d399" },
 ];
 
 function main() {
